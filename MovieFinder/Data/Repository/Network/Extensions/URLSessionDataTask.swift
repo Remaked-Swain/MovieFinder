@@ -1,8 +1,9 @@
-//
-//  URLSessionDataTask.swift
-//  MovieFinder
-//
-//  Created by Swain Yun on 3/14/24.
-//
-
 import Foundation
+
+protocol URLSessionDataTaskProtocol {
+    func resume()
+}
+
+extension URLSessionDataTask: URLSessionDataTaskProtocol {
+    
+}

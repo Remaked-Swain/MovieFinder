@@ -12,10 +12,14 @@
 		04BF4D902BA05139006620CE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF4D8F2BA05139006620CE /* ViewController.swift */; };
 		04BF4D952BA0513A006620CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04BF4D942BA0513A006620CE /* Assets.xcassets */; };
 		04BF4D982BA0513A006620CE /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 04BF4D972BA0513A006620CE /* Base */; };
-		04BF4DA32BA055BF006620CE /* KoficAPIKey.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04BF4DA22BA055BF006620CE /* KoficAPIKey.plist */; };
-		04BF4DAA2BA0BDE3006620CE /* NetworkRequestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF4DA92BA0BDE3006620CE /* NetworkRequestable.swift */; };
 		04BF4DAF2BA19BCA006620CE /* DailyBoxOfficeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF4DAE2BA19BCA006620CE /* DailyBoxOfficeModel.swift */; };
 		04BF4DB12BA19C3D006620CE /* MovieInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF4DB02BA19C3D006620CE /* MovieInfoModel.swift */; };
+		04BF4DB42BA2E7B2006620CE /* URLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF4DB32BA2E7B2006620CE /* URLSession.swift */; };
+		04BF4DB82BA2E957006620CE /* NetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF4DB72BA2E957006620CE /* NetworkModel.swift */; };
+		04BF4DBD2BA2E9FD006620CE /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF4DBC2BA2E9FD006620CE /* NetworkError.swift */; };
+		04BF4DBF2BA2EB29006620CE /* KoficAPIKey.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04BF4DBE2BA2EB29006620CE /* KoficAPIKey.plist */; };
+		04BF4DC62BA2EFCF006620CE /* NetworkFetchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF4DC52BA2EFCF006620CE /* NetworkFetchable.swift */; };
+		04BF4DC92BA31A9E006620CE /* URLSessionDataTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF4DC82BA31A9E006620CE /* URLSessionDataTask.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,10 +30,15 @@
 		04BF4D942BA0513A006620CE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		04BF4D972BA0513A006620CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		04BF4D992BA0513A006620CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		04BF4DA22BA055BF006620CE /* KoficAPIKey.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = KoficAPIKey.plist; sourceTree = "<group>"; };
-		04BF4DA92BA0BDE3006620CE /* NetworkRequestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequestable.swift; sourceTree = "<group>"; };
 		04BF4DAE2BA19BCA006620CE /* DailyBoxOfficeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyBoxOfficeModel.swift; sourceTree = "<group>"; };
 		04BF4DB02BA19C3D006620CE /* MovieInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieInfoModel.swift; sourceTree = "<group>"; };
+		04BF4DB32BA2E7B2006620CE /* URLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSession.swift; sourceTree = "<group>"; };
+		04BF4DB72BA2E957006620CE /* NetworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkModel.swift; sourceTree = "<group>"; };
+		04BF4DBC2BA2E9FD006620CE /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		04BF4DBE2BA2EB29006620CE /* KoficAPIKey.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = KoficAPIKey.plist; sourceTree = "<group>"; };
+		04BF4DC52BA2EFCF006620CE /* NetworkFetchable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkFetchable.swift; sourceTree = "<group>"; };
+		04BF4DC82BA31A9E006620CE /* URLSessionDataTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionDataTask.swift; sourceTree = "<group>"; };
+		04BF4DCA2BA336E2006620CE /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +55,7 @@
 		04BF4D7F2BA05139006620CE = {
 			isa = PBXGroup;
 			children = (
+				04BF4DCA2BA336E2006620CE /* README.md */,
 				04BF4D8A2BA05139006620CE /* MovieFinder */,
 				04BF4D892BA05139006620CE /* Products */,
 			);
@@ -101,6 +111,8 @@
 		04BF4DA62BA0BD7A006620CE /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				04BF4DC72BA2F174006620CE /* Error */,
+				04BF4DB22BA2E797006620CE /* Extensions */,
 				04BF4DA82BA0BDA5006620CE /* Implementation */,
 				04BF4DA72BA0BD8D006620CE /* Interface */,
 			);
@@ -110,7 +122,7 @@
 		04BF4DA72BA0BD8D006620CE /* Interface */ = {
 			isa = PBXGroup;
 			children = (
-				04BF4DA92BA0BDE3006620CE /* NetworkRequestable.swift */,
+				04BF4DC52BA2EFCF006620CE /* NetworkFetchable.swift */,
 			);
 			path = Interface;
 			sourceTree = "<group>";
@@ -118,6 +130,7 @@
 		04BF4DA82BA0BDA5006620CE /* Implementation */ = {
 			isa = PBXGroup;
 			children = (
+				04BF4DB72BA2E957006620CE /* NetworkModel.swift */,
 			);
 			path = Implementation;
 			sourceTree = "<group>";
@@ -134,7 +147,7 @@
 		04BF4DAC2BA1964D006620CE /* Database */ = {
 			isa = PBXGroup;
 			children = (
-				04BF4DA22BA055BF006620CE /* KoficAPIKey.plist */,
+				04BF4DBE2BA2EB29006620CE /* KoficAPIKey.plist */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -146,6 +159,23 @@
 				04BF4DB02BA19C3D006620CE /* MovieInfoModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		04BF4DB22BA2E797006620CE /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				04BF4DB32BA2E7B2006620CE /* URLSession.swift */,
+				04BF4DC82BA31A9E006620CE /* URLSessionDataTask.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		04BF4DC72BA2F174006620CE /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				04BF4DBC2BA2E9FD006620CE /* NetworkError.swift */,
+			);
+			path = Error;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -207,7 +237,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				04BF4D952BA0513A006620CE /* Assets.xcassets in Resources */,
-				04BF4DA32BA055BF006620CE /* KoficAPIKey.plist in Resources */,
+				04BF4DBF2BA2EB29006620CE /* KoficAPIKey.plist in Resources */,
 				04BF4D982BA0513A006620CE /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -219,12 +249,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04BF4DB82BA2E957006620CE /* NetworkModel.swift in Sources */,
 				04BF4D902BA05139006620CE /* ViewController.swift in Sources */,
+				04BF4DB42BA2E7B2006620CE /* URLSession.swift in Sources */,
+				04BF4DC92BA31A9E006620CE /* URLSessionDataTask.swift in Sources */,
 				04BF4D8C2BA05139006620CE /* AppDelegate.swift in Sources */,
 				04BF4DB12BA19C3D006620CE /* MovieInfoModel.swift in Sources */,
-				04BF4DAA2BA0BDE3006620CE /* NetworkRequestable.swift in Sources */,
 				04BF4DAF2BA19BCA006620CE /* DailyBoxOfficeModel.swift in Sources */,
+				04BF4DC62BA2EFCF006620CE /* NetworkFetchable.swift in Sources */,
 				04BF4D8E2BA05139006620CE /* SceneDelegate.swift in Sources */,
+				04BF4DBD2BA2E9FD006620CE /* NetworkError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
