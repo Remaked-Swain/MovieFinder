@@ -122,4 +122,4 @@ iOSInjectionProject/
 
 # API Key
 
-KoficAPIKey.plist
+*.KoficAPIKey.plist
