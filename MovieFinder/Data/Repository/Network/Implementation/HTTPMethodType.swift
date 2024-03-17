@@ -1,8 +1,6 @@
-//
-//  HTTPMethodType.swift
-//  MovieFinder
-//
-//  Created by Swain Yun on 3/16/24.
-//
-
 import Foundation
+
+enum HTTPMethodType {
+    static let get: String = "GET"
+    static let post: String = "POST"
+}

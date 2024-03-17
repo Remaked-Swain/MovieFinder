@@ -1,8 +1,5 @@
-//
-//  URLRequestConvertible.swift
-//  MovieFinder
-//
-//  Created by Swain Yun on 3/16/24.
-//
-
 import Foundation
+
+protocol URLRequestConvertible {
+    func makeURLRequest() throws -> URLRequest
+}
