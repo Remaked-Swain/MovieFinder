@@ -1,8 +1,13 @@
-//
-//  FetchDailyBoxOfficeUseCase.swift
-//  MovieFinder
-//
-//  Created by Swain Yun on 3/16/24.
-//
-
 import Foundation
+
+//final class FetchDailyBoxOfficeUseCase: UseCase {
+//    private let repository: DataRepositoryProtocol
+//    
+//    init(repository: DataRepositoryProtocol) {
+//        self.repository = repository
+//    }
+//    
+//    func execute() async {
+//        //
+//    }
+//}
