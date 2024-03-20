@@ -4,7 +4,6 @@ enum EndpointType {
     case dailyBoxOffice(key: String, date: Date)
     case movieInfo(key: String, code: String)
     
-    
     // MARK: Properties
     static let propertyListFileName: String = "KoficAPIKey"
     static let keyName: String = "KOFIC_API_KEY"
