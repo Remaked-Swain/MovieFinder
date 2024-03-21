@@ -20,15 +20,17 @@
 		04BF4DBF2BA2EB29006620CE /* KoficAPIKey.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04BF4DBE2BA2EB29006620CE /* KoficAPIKey.plist */; };
 		04BF4DC62BA2EFCF006620CE /* NetworkServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF4DC52BA2EFCF006620CE /* NetworkServiceProtocol.swift */; };
 		04BF4DCC2BA5169E006620CE /* EndpointType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF4DCB2BA5169E006620CE /* EndpointType.swift */; };
-		04BF4DD52BA590D0006620CE /* UseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF4DD42BA590D0006620CE /* UseCase.swift */; };
 		04BF4DD82BA5912F006620CE /* FetchDailyBoxOfficeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF4DD72BA5912F006620CE /* FetchDailyBoxOfficeUseCase.swift */; };
 		04BF4DE02BA59A7F006620CE /* Bundle+APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF4DDF2BA59A7F006620CE /* Bundle+APIKey.swift */; };
 		04BF4DE32BA5B116006620CE /* URLRequestConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF4DE22BA5B116006620CE /* URLRequestConvertible.swift */; };
 		04BF4DE52BA5B264006620CE /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF4DE42BA5B264006620CE /* Date.swift */; };
 		04BF4DE72BA5B4CC006620CE /* HTTPMethodType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF4DE62BA5B4CC006620CE /* HTTPMethodType.swift */; };
 		04BF4DEF2BA5B93E006620CE /* MovieFinderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF4DEE2BA5B93E006620CE /* MovieFinderTests.swift */; };
-		04BF4E062BAAD469006620CE /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF4E052BAAD469006620CE /* Repository.swift */; };
-		04BF4E0C2BAB18A3006620CE /* RepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF4E0B2BAB18A3006620CE /* RepositoryProtocol.swift */; };
+		04BF4E062BAAD469006620CE /* NetworkRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF4E052BAAD469006620CE /* NetworkRepository.swift */; };
+		04BF4E0C2BAB18A3006620CE /* NetworkRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF4E0B2BAB18A3006620CE /* NetworkRepositoryProtocol.swift */; };
+		04BF4E112BAC1E14006620CE /* DailyBoxOfficeRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF4E102BAC1E14006620CE /* DailyBoxOfficeRequestDTO.swift */; };
+		04BF4E132BAC1E2C006620CE /* MovieInfoRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF4E122BAC1E2C006620CE /* MovieInfoRequestDTO.swift */; };
+		04BF4E162BAC1FF6006620CE /* RepositoryError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF4E152BAC1FF6006620CE /* RepositoryError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,7 +60,6 @@
 		04BF4DC52BA2EFCF006620CE /* NetworkServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceProtocol.swift; sourceTree = "<group>"; };
 		04BF4DCA2BA336E2006620CE /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		04BF4DCB2BA5169E006620CE /* EndpointType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointType.swift; sourceTree = "<group>"; };
-		04BF4DD42BA590D0006620CE /* UseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseCase.swift; sourceTree = "<group>"; };
 		04BF4DD72BA5912F006620CE /* FetchDailyBoxOfficeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchDailyBoxOfficeUseCase.swift; sourceTree = "<group>"; };
 		04BF4DDF2BA59A7F006620CE /* Bundle+APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+APIKey.swift"; sourceTree = "<group>"; };
 		04BF4DE22BA5B116006620CE /* URLRequestConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequestConvertible.swift; sourceTree = "<group>"; };
@@ -66,8 +67,11 @@
 		04BF4DE62BA5B4CC006620CE /* HTTPMethodType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethodType.swift; sourceTree = "<group>"; };
 		04BF4DEC2BA5B93E006620CE /* MovieFinderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MovieFinderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		04BF4DEE2BA5B93E006620CE /* MovieFinderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieFinderTests.swift; sourceTree = "<group>"; };
-		04BF4E052BAAD469006620CE /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
-		04BF4E0B2BAB18A3006620CE /* RepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryProtocol.swift; sourceTree = "<group>"; };
+		04BF4E052BAAD469006620CE /* NetworkRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRepository.swift; sourceTree = "<group>"; };
+		04BF4E0B2BAB18A3006620CE /* NetworkRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRepositoryProtocol.swift; sourceTree = "<group>"; };
+		04BF4E102BAC1E14006620CE /* DailyBoxOfficeRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyBoxOfficeRequestDTO.swift; sourceTree = "<group>"; };
+		04BF4E122BAC1E2C006620CE /* MovieInfoRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieInfoRequestDTO.swift; sourceTree = "<group>"; };
+		04BF4E152BAC1FF6006620CE /* RepositoryError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,7 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				04BF4DD22BA5909F006620CE /* UseCases */,
-				04BF4DAD2BA1978C006620CE /* Entities */,
+				04BF4DAD2BA1978C006620CE /* DTOs */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -183,19 +187,21 @@
 		04BF4DAB2BA1961D006620CE /* Repository */ = {
 			isa = PBXGroup;
 			children = (
+				04BF4E142BAC1FEA006620CE /* Error */,
+				04BF4E0F2BAC09AD006620CE /* Entities */,
 				04BF4E0A2BAB1887006620CE /* Implementation */,
 				04BF4E092BAB1882006620CE /* Interface */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
 		};
-		04BF4DAD2BA1978C006620CE /* Entities */ = {
+		04BF4DAD2BA1978C006620CE /* DTOs */ = {
 			isa = PBXGroup;
 			children = (
-				04BF4DAE2BA19BCA006620CE /* DailyBoxOfficeModel.swift */,
-				04BF4DB02BA19C3D006620CE /* MovieInfoModel.swift */,
+				04BF4E182BAC29BE006620CE /* ResponseDTO */,
+				04BF4E172BAC29B6006620CE /* RequestDTO */,
 			);
-			path = Entities;
+			path = DTOs;
 			sourceTree = "<group>";
 		};
 		04BF4DB22BA2E797006620CE /* Extensions */ = {
@@ -228,7 +234,6 @@
 		04BF4DD32BA590AC006620CE /* Interface */ = {
 			isa = PBXGroup;
 			children = (
-				04BF4DD42BA590D0006620CE /* UseCase.swift */,
 			);
 			path = Interface;
 			sourceTree = "<group>";
@@ -259,7 +264,7 @@
 		04BF4E092BAB1882006620CE /* Interface */ = {
 			isa = PBXGroup;
 			children = (
-				04BF4E0B2BAB18A3006620CE /* RepositoryProtocol.swift */,
+				04BF4E0B2BAB18A3006620CE /* NetworkRepositoryProtocol.swift */,
 			);
 			path = Interface;
 			sourceTree = "<group>";
@@ -267,9 +272,42 @@
 		04BF4E0A2BAB1887006620CE /* Implementation */ = {
 			isa = PBXGroup;
 			children = (
-				04BF4E052BAAD469006620CE /* Repository.swift */,
+				04BF4E052BAAD469006620CE /* NetworkRepository.swift */,
 			);
 			path = Implementation;
+			sourceTree = "<group>";
+		};
+		04BF4E0F2BAC09AD006620CE /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				04BF4DAE2BA19BCA006620CE /* DailyBoxOfficeModel.swift */,
+				04BF4DB02BA19C3D006620CE /* MovieInfoModel.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		04BF4E142BAC1FEA006620CE /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				04BF4E152BAC1FF6006620CE /* RepositoryError.swift */,
+			);
+			path = Error;
+			sourceTree = "<group>";
+		};
+		04BF4E172BAC29B6006620CE /* RequestDTO */ = {
+			isa = PBXGroup;
+			children = (
+				04BF4E102BAC1E14006620CE /* DailyBoxOfficeRequestDTO.swift */,
+				04BF4E122BAC1E2C006620CE /* MovieInfoRequestDTO.swift */,
+			);
+			path = RequestDTO;
+			sourceTree = "<group>";
+		};
+		04BF4E182BAC29BE006620CE /* ResponseDTO */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ResponseDTO;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -378,19 +416,21 @@
 				04BF4DB42BA2E7B2006620CE /* URLSession.swift in Sources */,
 				04BF4DE52BA5B264006620CE /* Date.swift in Sources */,
 				04BF4D8C2BA05139006620CE /* AppDelegate.swift in Sources */,
+				04BF4E162BAC1FF6006620CE /* RepositoryError.swift in Sources */,
 				04BF4DB12BA19C3D006620CE /* MovieInfoModel.swift in Sources */,
 				04BF4DE72BA5B4CC006620CE /* HTTPMethodType.swift in Sources */,
-				04BF4DD52BA590D0006620CE /* UseCase.swift in Sources */,
 				04BF4DE32BA5B116006620CE /* URLRequestConvertible.swift in Sources */,
 				04BF4DAF2BA19BCA006620CE /* DailyBoxOfficeModel.swift in Sources */,
 				04BF4DE02BA59A7F006620CE /* Bundle+APIKey.swift in Sources */,
 				04BF4DC62BA2EFCF006620CE /* NetworkServiceProtocol.swift in Sources */,
-				04BF4E062BAAD469006620CE /* Repository.swift in Sources */,
+				04BF4E062BAAD469006620CE /* NetworkRepository.swift in Sources */,
 				04BF4D8E2BA05139006620CE /* SceneDelegate.swift in Sources */,
 				04BF4DD82BA5912F006620CE /* FetchDailyBoxOfficeUseCase.swift in Sources */,
 				04BF4DCC2BA5169E006620CE /* EndpointType.swift in Sources */,
+				04BF4E132BAC1E2C006620CE /* MovieInfoRequestDTO.swift in Sources */,
+				04BF4E112BAC1E14006620CE /* DailyBoxOfficeRequestDTO.swift in Sources */,
 				04BF4DBD2BA2E9FD006620CE /* NetworkError.swift in Sources */,
-				04BF4E0C2BAB18A3006620CE /* RepositoryProtocol.swift in Sources */,
+				04BF4E0C2BAB18A3006620CE /* NetworkRepositoryProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
