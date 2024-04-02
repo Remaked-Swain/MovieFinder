@@ -21,7 +21,7 @@
 		04F960ED2BBAAED1008F16C1 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F960EC2BBAAED1008F16C1 /* NetworkService.swift */; };
 		04F960F12BBAB640008F16C1 /* DailyBoxOfficeListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F960F02BBAB640008F16C1 /* DailyBoxOfficeListRepository.swift */; };
 		04F960F52BBABA17008F16C1 /* FetchDailyBoxOfficeListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F960F42BBABA17008F16C1 /* FetchDailyBoxOfficeListUseCase.swift */; };
-		04F960F72BBBBD8F008F16C1 /* KoficAPIKey.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04F960F62BBBBD8F008F16C1 /* KoficAPIKey.plist */; };
+		04F960F92BBBC254008F16C1 /* KoficAPIKey.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04F960F82BBBC254008F16C1 /* KoficAPIKey.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,7 +40,7 @@
 		04F960EC2BBAAED1008F16C1 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		04F960F02BBAB640008F16C1 /* DailyBoxOfficeListRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyBoxOfficeListRepository.swift; sourceTree = "<group>"; };
 		04F960F42BBABA17008F16C1 /* FetchDailyBoxOfficeListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchDailyBoxOfficeListUseCase.swift; sourceTree = "<group>"; };
-		04F960F62BBBBD8F008F16C1 /* KoficAPIKey.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = KoficAPIKey.plist; sourceTree = "<group>"; };
+		04F960F82BBBC254008F16C1 /* KoficAPIKey.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = KoficAPIKey.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,8 +195,8 @@
 		04F960F22BBAB6B3008F16C1 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				04F960F62BBBBD8F008F16C1 /* KoficAPIKey.plist */,
 				04F960E62BBAA992008F16C1 /* EndpointType.swift */,
+				04F960F82BBBC254008F16C1 /* KoficAPIKey.plist */,
 				04F960DE2BBAA7F4008F16C1 /* Extensions */,
 				04F960DB2BBAA797008F16C1 /* NetworkService */,
 				04F960DA2BBAA791008F16C1 /* NetworkSessionManager */,
@@ -271,7 +271,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0468E2DD2BBAA455009124CC /* Preview Assets.xcassets in Resources */,
-				04F960F72BBBBD8F008F16C1 /* KoficAPIKey.plist in Resources */,
+				04F960F92BBBC254008F16C1 /* KoficAPIKey.plist in Resources */,
 				0468E2DA2BBAA455009124CC /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
