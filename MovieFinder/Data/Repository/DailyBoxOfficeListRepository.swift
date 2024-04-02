@@ -11,9 +11,16 @@ protocol DailyBoxOfficeListRepository {
     func fetchDailyBoxOfficeList(date: Date) async throws -> [DailyBoxOfficeList]
 }
 
-enum DailyBoxOfficeListRepositoryError: Error {
+enum DailyBoxOfficeListRepositoryError: Error, CustomDebugStringConvertible {
     case invalidKey
     case fetchFailed
+    
+    var debugDescription: String {
+        switch self {
+        case .invalidKey: "키가 유효하지 않음"
+        case .fetchFailed: "값을 가져오는데 실패함"
+        }
+    }
 }
 
 final class DefaultDailyBoxOfficeListRepository {
