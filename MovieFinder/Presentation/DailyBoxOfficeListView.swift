@@ -6,26 +6,30 @@
 //
 
 import SwiftUI
+import Combine
 
 final class DailyBoxOfficeListViewModel: ObservableObject {
     // MARK: Dependencies
-    private let fetchDailyBoxOfficeUseCase: FetchDailyBoxOfficeListUseCase
+    private let fetchDailyBoxOfficeListUseCase: FetchDailyBoxOfficeListUseCase
     
     // MARK: Properties
     @Published var dailyBoxOfficeList: [DailyBoxOfficeList] = []
+    private var dailyBoxOfficeListSubscription: AnyCancellable?
     
-    init(fetchDailyBoxOfficeUseCase: FetchDailyBoxOfficeListUseCase) {
-        self.fetchDailyBoxOfficeUseCase = fetchDailyBoxOfficeUseCase
+    init(fetchDailyBoxOfficeListUseCase: FetchDailyBoxOfficeListUseCase) {
+        self.fetchDailyBoxOfficeListUseCase = fetchDailyBoxOfficeListUseCase
     }
     
     func updateDailyBoxOfficeList() {
-        Task {
-            guard let dailyBoxOfficeList = try? await fetchDailyBoxOfficeUseCase.fetchDailyBoxOfficeList() else {
-                dailyBoxOfficeList = []
-                return
+        dailyBoxOfficeListSubscription = fetchDailyBoxOfficeListUseCase.fetchDailyBoxOfficeList()
+            .sink { completion in
+                switch completion {
+                case .finished: break
+                case .failure(let error): print(error)
+                }
+            } receiveValue: { [weak self] value in
+                self?.dailyBoxOfficeList = value
             }
-            self.dailyBoxOfficeList = dailyBoxOfficeList
-        }
     }
 }
 
@@ -49,5 +53,5 @@ struct DailyBoxOfficeListView: View {
 }
 
 #Preview {
-    DailyBoxOfficeListView(vm: DailyBoxOfficeListViewModel(fetchDailyBoxOfficeUseCase: DefaultFetchDailyBoxOfficeListUseCase(repository: DefaultDailyBoxOfficeListRepository(networkService: DefaultNetworkService(sessionManager: DefaultNetworkSessionManager())))))
+    DailyBoxOfficeListView(vm: DailyBoxOfficeListViewModel(fetchDailyBoxOfficeListUseCase: DefaultFetchDailyBoxOfficeListUseCase(repository: DefaultDailyBoxOfficeListRepository(networkService: DefaultNetworkService(sessionManager: DefaultNetworkSessionManager())))))
 }

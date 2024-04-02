@@ -6,9 +6,10 @@
 //
 
 import Foundation
+import Combine
 
 protocol FetchDailyBoxOfficeListUseCase {
-    func fetchDailyBoxOfficeList() async throws -> [DailyBoxOfficeList]
+    func fetchDailyBoxOfficeList() -> AnyPublisher<[DailyBoxOfficeList], Error>
 }
 
 final class DefaultFetchDailyBoxOfficeListUseCase {
@@ -21,7 +22,20 @@ final class DefaultFetchDailyBoxOfficeListUseCase {
 
 // MARK: FetchDailyBoxOfficeListUseCase Confirmation
 extension DefaultFetchDailyBoxOfficeListUseCase: FetchDailyBoxOfficeListUseCase {
-    func fetchDailyBoxOfficeList() async throws -> [DailyBoxOfficeList] {
-        try await repository.fetchDailyBoxOfficeList(date: .now)
+    func fetchDailyBoxOfficeList() -> AnyPublisher<[DailyBoxOfficeList], Error> {
+        return Future<[DailyBoxOfficeList], Error> { [weak self] promise in
+            guard let self = self else { return }
+            
+            Task {
+                do {
+                    let result = try await self.repository.fetchDailyBoxOfficeList(date: .now)
+                    promise(.success(result))
+                } catch {
+                    promise(.failure(error))
+                }
+            }
+        }
+        .receive(on: DispatchQueue.main)
+        .eraseToAnyPublisher()
     }
 }
