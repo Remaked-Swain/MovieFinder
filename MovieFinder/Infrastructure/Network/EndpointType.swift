@@ -38,32 +38,41 @@ enum EndpointType {
         }
     }
     
-    var baseURL: String {
-        "https://kobis.or.kr/kobisopenapi/webservice/rest"
-    }
+    var scheme: String { "https" }
     
-    var endpoint: String {
+    var host: String { "kobis.or.kr" }
+    
+    var path: String {
         switch self {
-        case .dailyBoxOffice: "/boxoffice/searchDailyBoxOfficeList.json?"
-        case .movieInfo: "/movie/searchMovieInfo.json?"
+        case .dailyBoxOffice: "/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json"
+        case .movieInfo: "/kobisopenapi/webservice/rest/movie/searchMovieInfo.json"
         }
     }
     
-    var httpHeaderField: [String: String] {
+    var queryItems: [URLQueryItem] {
         switch self {
-        case .dailyBoxOffice(let key, let date): return ["key": key, "targetDt": date.asEightPlaceString]
-        case .movieInfo(let key, let code): return ["key": key, "movieCd": code]
+        case .dailyBoxOffice(let key, let date): return makeQueryItems(queries: ("key", key), ("targetDt", date.asEightPlaceString))
+        case .movieInfo(let key, let code): return makeQueryItems(queries: ("key", key), ("movieCd", code))
         }
+    }
+    
+    private func makeQueryItems(queries: (key: String, value: String)...) -> [URLQueryItem] {
+        return queries.map { URLQueryItem(name: $0.key, value: $0.value) }
     }
 }
 
 // MARK: Requestable Confirmation
 extension EndpointType: Requestable {
     func urlRequest() -> URLRequest? {
-        guard let url = URL(string: baseURL) else { return nil }
-        var request = URLRequest(url: url)
+        var components = URLComponents()
+        components.scheme = scheme
+        components.host = host
+        components.path = path
+        components.queryItems = queryItems
+        
+        guard let fullURL = components.url else { return nil }
+        var request = URLRequest(url: fullURL)
         request.httpMethod = httpMethod
-        request.allHTTPHeaderFields = httpHeaderField
         return request
     }
 }
