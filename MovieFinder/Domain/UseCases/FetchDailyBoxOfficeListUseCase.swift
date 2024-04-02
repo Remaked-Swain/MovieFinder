@@ -26,9 +26,11 @@ extension DefaultFetchDailyBoxOfficeListUseCase: FetchDailyBoxOfficeListUseCase 
         return Future<[DailyBoxOfficeList], Error> { [weak self] promise in
             guard let self = self else { return }
             
+            let yesterday = Date.now.addingTimeInterval(-86400)
+            
             Task {
                 do {
-                    let result = try await self.repository.fetchDailyBoxOfficeList(date: .now)
+                    let result = try await self.repository.fetchDailyBoxOfficeList(date: yesterday)
                     promise(.success(result))
                 } catch {
                     promise(.failure(error))
