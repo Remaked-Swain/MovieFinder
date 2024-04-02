@@ -36,18 +36,23 @@ final class DailyBoxOfficeListViewModel: ObservableObject {
 struct DailyBoxOfficeListView: View {
     @ObservedObject private var vm: DailyBoxOfficeListViewModel
     
+    private let navigationTitle: String = "일일 박스오피스 순위"
+    
     init(vm: DailyBoxOfficeListViewModel) {
         self.vm = vm
     }
     
     var body: some View {
-        List(vm.dailyBoxOfficeList, id: \.movieCode) { movie in
-            HStack {
-                Text(movie.movieName)
+        NavigationStack {
+            List(vm.dailyBoxOfficeList, id: \.movieCode) { movie in
+                HStack {
+                    Text(movie.movieName)
+                }
             }
-        }
-        .onAppear {
-            vm.updateDailyBoxOfficeList()
+            .navigationTitle(navigationTitle)
+            .onAppear {
+                vm.updateDailyBoxOfficeList()
+            }
         }
     }
 }
