@@ -7,13 +7,6 @@
 
 import SwiftUI
 
-//DailyBoxOfficeListView(
-//    vm: DailyBoxOfficeListViewModel(
-//        fetchDailyBoxOfficeUseCase: DefaultFetchDailyBoxOfficeListUseCase(
-//            repository: DefaultDailyBoxOfficeListRepository(
-//                networkService: DefaultNetworkService(
-//                    sessionManager: DefaultNetworkSessionManager())))))
-
 private let sessionManager = DefaultNetworkSessionManager()
 private let networkService = DefaultNetworkService(sessionManager: sessionManager)
 private let dailyBoxOfficeListRepository = DefaultDailyBoxOfficeListRepository(networkService: networkService)
@@ -21,7 +14,7 @@ private let fetchDailyBoxOfficeUseCase = DefaultFetchDailyBoxOfficeListUseCase(r
 
 @main
 struct MovieFinderApp: App {
-    private let dailyBoxOfficeListViewModel = DailyBoxOfficeListViewModel(fetchDailyBoxOfficeUseCase: fetchDailyBoxOfficeUseCase)
+    private let dailyBoxOfficeListViewModel = DailyBoxOfficeListViewModel(fetchDailyBoxOfficeListUseCase: fetchDailyBoxOfficeUseCase)
     
     var body: some Scene {
         WindowGroup {
