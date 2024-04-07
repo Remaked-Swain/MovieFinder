@@ -7,12 +7,16 @@
 
 import SwiftUI
 
-//final class DetailMovieView
+final class DetailMovieInfoViewModel: ObservableObject {
+    private let fetchMovieDetailUseCase: FetchMovieDetailUseCase
+    
+    init(fetchMovieDetailUseCase: FetchMovieDetailUseCase) {
+        self.fetchMovieDetailUseCase = fetchMovieDetailUseCase
+    }
+}
 
 struct DetailMovieInfoView: View {
-    @Binding var detailMovieInfo: DetailMovieInfo?
-    
     var body: some View {
-        Text(detailMovieInfo?.movieName ?? "없음")
+        Text("")
     }
 }

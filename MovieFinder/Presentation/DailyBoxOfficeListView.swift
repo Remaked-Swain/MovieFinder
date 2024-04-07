@@ -13,7 +13,7 @@ final class DailyBoxOfficeListViewModel: ObservableObject {
     private let fetchDailyBoxOfficeListUseCase: FetchDailyBoxOfficeListUseCase
     
     // MARK: Properties
-    @Published var dailyBoxOfficeList: [DailyBoxOfficeList] = []
+    @Published var movies: [BasicMovieInfo]? = []
     private var dailyBoxOfficeListSubscription: AnyCancellable?
     
     init(fetchDailyBoxOfficeListUseCase: FetchDailyBoxOfficeListUseCase) {
@@ -28,7 +28,7 @@ final class DailyBoxOfficeListViewModel: ObservableObject {
                 case .failure(let error): print(error)
                 }
             } receiveValue: { [weak self] value in
-                self?.dailyBoxOfficeList = value
+                self?.movies = value
             }
     }
 }
@@ -44,10 +44,8 @@ struct DailyBoxOfficeListView: View {
     
     var body: some View {
         NavigationStack {
-            List(vm.dailyBoxOfficeList, id: \.movieCode) { movie in
-                HStack {
-                    Text(movie.movieName)
-                }
+            List(vm.movies ?? [], id: \.movieCode) { movie in
+                movieCell(movie)
             }
             .navigationTitle(navigationTitle)
             .onAppear {
@@ -58,5 +56,30 @@ struct DailyBoxOfficeListView: View {
 }
 
 #Preview {
-    DailyBoxOfficeListView(vm: DailyBoxOfficeListViewModel(fetchDailyBoxOfficeListUseCase: DefaultFetchDailyBoxOfficeListUseCase(repository: DefaultDailyBoxOfficeListRepository(networkService: DefaultNetworkService(sessionManager: DefaultNetworkSessionManager())))))
+    DailyBoxOfficeListView(vm: Preview.instance.vm)
+}
+
+extension DailyBoxOfficeListView {
+    @ViewBuilder
+    private func movieCell(_ movie: BasicMovieInfo) -> some View {
+        NavigationLink {
+            DetailMovieInfoView()
+        } label: {
+            Text(movie.rank)
+                .font(.largeTitle)
+                .padding(4)
+            
+            VStack(alignment:.leading, spacing: 10) {
+                HStack {
+                    Text(movie.movieName)
+                        .font(.headline)
+                        .lineLimit(1)
+                }
+                
+                HStack {
+                    Text("누적 관객수: \(movie.audienceAccumulatedAmount)")
+                }
+            }
+        }
+    }
 }
