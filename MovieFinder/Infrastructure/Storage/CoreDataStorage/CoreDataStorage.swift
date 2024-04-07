@@ -1,8 +1,6 @@
-//
-//  CoreDataStorage.swift
-//  MovieFinder
-//
-//  Created by Swain Yun on 4/4/24.
-//
-
 import Foundation
+
+protocol CoreDataStorage {
+    func fetch()
+    func save()
+}
