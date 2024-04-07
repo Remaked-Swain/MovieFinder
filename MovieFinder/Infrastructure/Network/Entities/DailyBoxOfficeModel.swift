@@ -41,6 +41,10 @@ struct DailyBoxOfficeList: Decodable {
         case screenCount = "scrnCnt"
         case showCount = "showCnt"
     }
+    
+    func toDTO() -> BasicMovieInfo {
+        return BasicMovieInfo(rank: rank, movieCode: movieCode, movieName: movieName, audienceAccumulatedAmount: audienceAccumulatedAmount)
+    }
 }
 
 enum RankOldAndNew: String, Decodable {
