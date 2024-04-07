@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 protocol FetchDailyBoxOfficeListUseCase {
-    func fetchDailyBoxOfficeList() -> AnyPublisher<[DailyBoxOfficeList], Error>
+    func fetchDailyBoxOfficeList() -> AnyPublisher<[BasicMovieInfo], Error>
 }
 
 final class DefaultFetchDailyBoxOfficeListUseCase {
@@ -22,8 +22,8 @@ final class DefaultFetchDailyBoxOfficeListUseCase {
 
 // MARK: FetchDailyBoxOfficeListUseCase Confirmation
 extension DefaultFetchDailyBoxOfficeListUseCase: FetchDailyBoxOfficeListUseCase {
-    func fetchDailyBoxOfficeList() -> AnyPublisher<[DailyBoxOfficeList], Error> {
-        return Future<[DailyBoxOfficeList], Error> { [weak self] promise in
+    func fetchDailyBoxOfficeList() -> AnyPublisher<[BasicMovieInfo], Error> {
+        return Future<[BasicMovieInfo], Error> { [weak self] promise in
             guard let self = self else { return }
             
             let yesterday = Date.now.addingTimeInterval(-86400)

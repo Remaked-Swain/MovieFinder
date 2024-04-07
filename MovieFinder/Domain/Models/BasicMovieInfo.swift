@@ -8,9 +8,7 @@
 import Foundation
 
 struct BasicMovieInfo {
-    let rank, rankIntensity: String
-    let rankOldAndNew: RankOldAndNew
+    let rank: String
     let movieCode, movieName: String
-    let salesAccumulatedAmount: String
     let audienceAccumulatedAmount: String
 }
