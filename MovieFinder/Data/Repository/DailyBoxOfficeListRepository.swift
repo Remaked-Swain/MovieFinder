@@ -8,7 +8,8 @@
 import Foundation
 
 protocol DailyBoxOfficeListRepository {
-    func fetchDailyBoxOfficeList(date: Date) async throws -> [DailyBoxOfficeList]
+    func fetchDailyBoxOfficeList(date: Date) async throws -> [BasicMovieInfo]
+    func fetchMovieDetail(movieCode code: String) async throws -> DetailMovieInfo
 }
 
 enum DailyBoxOfficeListRepositoryError: Error, CustomDebugStringConvertible {
@@ -34,19 +35,35 @@ final class DefaultDailyBoxOfficeListRepository {
         self.networkService = networkService
     }
     
-    private func mapToDailyBoxOfficeList(with entity: DailyBoxOfficeModel) -> [DailyBoxOfficeList] {
-        return entity.boxOfficeResult.dailyBoxOfficeList
+    private func mapToBasicMovieInfoList(with entity: DailyBoxOfficeModel) -> [BasicMovieInfo] {
+        return entity.boxOfficeResult.dailyBoxOfficeList.map { $0.toDTO() }
+    }
+    
+    private func mapToDetailMovieInfo(with entity: MovieDetailInfoModel) -> DetailMovieInfo {
+        return entity.movieInfoResult.movieInfo.toDTO()
+    }
+    
+    private func validateAPIKey() throws -> String {
+        guard let key = apiKey else {
+            throw DailyBoxOfficeListRepositoryError.invalidKey
+        }
+        return key
     }
 }
 
 // MARK: DailyBoxOfficeListRepository Confirmation
 extension DefaultDailyBoxOfficeListRepository: DailyBoxOfficeListRepository {
-    func fetchDailyBoxOfficeList(date: Date) async throws -> [DailyBoxOfficeList] {
-        guard let key = Bundle.main.koficAPIKey else {
-            throw DailyBoxOfficeListRepositoryError.invalidKey
-        }
+    func fetchDailyBoxOfficeList(date: Date) async throws -> [BasicMovieInfo] {
+        let key = try validateAPIKey()
         let endpoint = EndpointType.dailyBoxOffice(key: key, date: date)
         let entity = try await networkService.request(endpoint: endpoint, for: DailyBoxOfficeModel.self)
-        return mapToDailyBoxOfficeList(with: entity)
+        return mapToBasicMovieInfoList(with: entity)
+    }
+    
+    func fetchMovieDetail(movieCode code: String) async throws -> DetailMovieInfo {
+        let key = try validateAPIKey()
+        let endpoint = EndpointType.movieInfo(key: key, code: code)
+        let entity = try await networkService.request(endpoint: endpoint, for: MovieDetailInfoModel.self)
+        return mapToDetailMovieInfo(with: entity)
     }
 }
