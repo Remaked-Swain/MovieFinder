@@ -60,7 +60,6 @@ struct DailyBoxOfficeListView: View {
 }
 
 extension DailyBoxOfficeListView {
-    @ViewBuilder
     private func movieCell(_ movie: BasicMovieInfo) -> some View {
         NavigationLink {
             DetailMovieInfoView()
