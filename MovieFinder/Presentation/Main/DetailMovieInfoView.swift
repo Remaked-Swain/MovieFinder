@@ -30,7 +30,7 @@ struct DetailMovieInfoView: View {
                 .frame(maxWidth: .infinity)
                 .padding()
                 
-                ForEach(movieInfo.actors, id: \.peopleName) { `actor` in
+                ForEach(movieInfo.actors, id: \.id) { `actor` in
                     HStack(spacing: 10) {
                         if actor.cast.isEmpty == false {
                             Text("\(actor.cast)역")
