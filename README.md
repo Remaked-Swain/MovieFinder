@@ -8,6 +8,11 @@ SwiftUI 환경에서 Clean Architecture와 MVVM을 실습한 프로젝트
 
 ### 앱의 주요 기능에 대해 설명합니다.
 
+<p>
+    <img src="https://github.com/Remaked-Swain/ScreenShotRepository/blob/main/MovieFinder/DailyBoxOfficeListView.png?raw=true" alt="DailyBoxOfficeListView" width="250px">
+    <img src="https://github.com/Remaked-Swain/ScreenShotRepository/blob/main/MovieFinder/DetailMovieInfoView.png?raw=true" alt="DetailMovieInfoView" width="250px">
+</p>
+
 **일일 박스오피스 영화 목록 뷰**: DailyBoxOfficeListView
 * 일일 박스오피스 영화 목록을 순위별로 화면에 표시합니다.
 * 나열된 영화에 대해 자세한 영화 정보를 확인할 수 있는 디테일 뷰로 이동할 수 있습니다.
