@@ -59,8 +59,8 @@ struct Actor: Decodable {
     let peopleName, peopleNameEnglish, cast, castEnglish: String
     
     enum CodingKeys: String, CodingKey {
-        case peopleName = "peopleName"
-        case peopleNameEnglish = "popleNmEn"
+        case peopleName = "peopleNm"
+        case peopleNameEnglish = "peopleNmEn"
         case castEnglish = "castEn"
         case cast
     }
