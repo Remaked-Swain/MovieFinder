@@ -16,7 +16,7 @@ fileprivate enum NetworkServiceError: Error {
     case badResponse(statusCode: Int)
     case notConnectedToInternet
     case invalidURL
-    case decodingError
+    case decodingError(typeName: String)
 }
 
 final class DefaultNetworkService {
@@ -52,7 +52,7 @@ final class DefaultNetworkService {
     
     private func decode<T: Decodable>(for type: T.Type, with data: Data) throws -> T {
         guard let decodedData = try? decoder.decode(type, from: data) else {
-            throw NetworkServiceError.decodingError
+            throw NetworkServiceError.decodingError(typeName: String(describing: type))
         }
         return decodedData
     }
