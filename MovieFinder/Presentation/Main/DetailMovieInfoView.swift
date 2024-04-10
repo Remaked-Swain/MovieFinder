@@ -9,17 +9,47 @@ import SwiftUI
 import Combine
 
 struct DetailMovieInfoView: View {
-    @ObservedObject private var vm: DetailMovieInfoViewModel
-    @Binding var code: String?
+    @ObservedObject private var vm: MainViewModel
+    private let code: String
     
-    init(vm: DetailMovieInfoViewModel) {
+    init(vm: MainViewModel, code: String) {
         self.vm = vm
+        self.code = code
     }
     
     var body: some View {
-        Text("")
-            .onAppear {
-                vm.updateDetailMovieInfo(code: code)
+        ScrollView(.vertical) {
+            if let movieInfo = vm.selectedMovieInfo {
+                VStack(alignment: .listRowSeparatorLeading, spacing: 10) {
+                    Text(movieInfo.movieName)
+                        .font(.largeTitle)
+                    
+                    Text("개봉 연월일: \(movieInfo.openDate)")
+                        .font(.callout)
+                }
+                .frame(maxWidth: .infinity)
+                .padding()
+                
+                ForEach(movieInfo.actors, id: \.peopleName) { `actor` in
+                    HStack(spacing: 10) {
+                        if actor.cast.isEmpty == false {
+                            Text("\(actor.cast)역")
+                                .bold()
+                        }
+                        
+                        Text("\(actor.peopleName)")
+                    }
+                }
+            } else {
+                ProgressView()
             }
+        }
+        .frame(maxWidth: .infinity)
+        .onAppear {
+            vm.updateDetailMovieInfo(movieCode: code)
+        }
+        .onDisappear {
+            vm.flushMovieInfo()
+        }
     }
 }
