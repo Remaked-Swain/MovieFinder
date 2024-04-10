@@ -22,7 +22,7 @@ final class DefaultFetchMovieDetailUseCase {
 
 // MARK: FetchMovieDetailUseCase Confirmation
 extension DefaultFetchMovieDetailUseCase: FetchMovieDetailUseCase {
-    func fetchMovieDetail(movieCode code: String) -> AnyPublisher<DetailMovieInfo, any Error> {
+    func fetchMovieDetail(movieCode code: String) -> AnyPublisher<DetailMovieInfo, Error> {
         return Future<DetailMovieInfo, Error> { [weak self] promise in
             guard let self = self else { return }
             
