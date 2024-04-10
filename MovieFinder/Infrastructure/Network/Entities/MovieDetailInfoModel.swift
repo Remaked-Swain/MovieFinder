@@ -55,7 +55,8 @@ struct MovieInfo: Decodable {
     }
 }
 
-struct Actor: Decodable {
+struct Actor: Decodable, Hashable {
+    let id = UUID()
     let peopleName, peopleNameEnglish, cast, castEnglish: String
     
     enum CodingKeys: String, CodingKey {
