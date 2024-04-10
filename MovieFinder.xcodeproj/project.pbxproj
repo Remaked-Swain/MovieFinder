@@ -13,7 +13,6 @@
 		0468E2DD2BBAA455009124CC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0468E2DC2BBAA455009124CC /* Preview Assets.xcassets */; };
 		0476317B2BBD87CC007697A8 /* FetchMovieDetailUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0476317A2BBD87CC007697A8 /* FetchMovieDetailUseCase.swift */; };
 		0476317D2BBD8831007697A8 /* DetailMovieInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0476317C2BBD8831007697A8 /* DetailMovieInfo.swift */; };
-		047631822BBE96BE007697A8 /* CoreDataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047631812BBE96BE007697A8 /* CoreDataStorage.swift */; };
 		047631842BBE99CC007697A8 /* MovieDetailInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047631832BBE99CC007697A8 /* MovieDetailInfoModel.swift */; };
 		047631862BBEB463007697A8 /* Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047631852BBEB463007697A8 /* Preview.swift */; };
 		047631882BBEB6B1007697A8 /* DetailMovieInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047631872BBEB6B1007697A8 /* DetailMovieInfoView.swift */; };
@@ -39,11 +38,11 @@
 		0468E2DC2BBAA455009124CC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		0476317A2BBD87CC007697A8 /* FetchMovieDetailUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchMovieDetailUseCase.swift; sourceTree = "<group>"; };
 		0476317C2BBD8831007697A8 /* DetailMovieInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMovieInfo.swift; sourceTree = "<group>"; };
-		047631812BBE96BE007697A8 /* CoreDataStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStorage.swift; sourceTree = "<group>"; };
 		047631832BBE99CC007697A8 /* MovieDetailInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailInfoModel.swift; sourceTree = "<group>"; };
 		047631852BBEB463007697A8 /* Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preview.swift; sourceTree = "<group>"; };
 		047631872BBEB6B1007697A8 /* DetailMovieInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMovieInfoView.swift; sourceTree = "<group>"; };
 		0476318A2BBFDA4F007697A8 /* AppDependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDependencyContainer.swift; sourceTree = "<group>"; };
+		047631932BC41D6E007697A8 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		04F960D52BBAA6A1008F16C1 /* BasicMovieInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicMovieInfo.swift; sourceTree = "<group>"; };
 		04F960D82BBAA6F7008F16C1 /* DailyBoxOfficeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyBoxOfficeModel.swift; sourceTree = "<group>"; };
 		04F960DF2BBAA7FD008F16C1 /* URLSession+URLSessionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+URLSessionProtocol.swift"; sourceTree = "<group>"; };
@@ -71,6 +70,7 @@
 		0468E2C92BBAA454009124CC = {
 			isa = PBXGroup;
 			children = (
+				047631932BC41D6E007697A8 /* README.md */,
 				0468E2D42BBAA454009124CC /* MovieFinder */,
 				0468E2D32BBAA454009124CC /* Products */,
 			);
@@ -104,14 +104,6 @@
 				0468E2DC2BBAA455009124CC /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		0476317E2BBE5837007697A8 /* CoreDataStorage */ = {
-			isa = PBXGroup;
-			children = (
-				047631812BBE96BE007697A8 /* CoreDataStorage.swift */,
-			);
-			path = CoreDataStorage;
 			sourceTree = "<group>";
 		};
 		047631892BBFDA3E007697A8 /* DIContainer */ = {
@@ -244,7 +236,6 @@
 		04F960F32BBAB6BE008F16C1 /* Storage */ = {
 			isa = PBXGroup;
 			children = (
-				0476317E2BBE5837007697A8 /* CoreDataStorage */,
 			);
 			path = Storage;
 			sourceTree = "<group>";
@@ -330,7 +321,6 @@
 				0476317D2BBD8831007697A8 /* DetailMovieInfo.swift in Sources */,
 				047631862BBEB463007697A8 /* Preview.swift in Sources */,
 				0476317B2BBD87CC007697A8 /* FetchMovieDetailUseCase.swift in Sources */,
-				047631822BBE96BE007697A8 /* CoreDataStorage.swift in Sources */,
 				047631842BBE99CC007697A8 /* MovieDetailInfoModel.swift in Sources */,
 				04F960E92BBAACC2008F16C1 /* Date.swift in Sources */,
 				04F960D92BBAA6F7008F16C1 /* DailyBoxOfficeModel.swift in Sources */,

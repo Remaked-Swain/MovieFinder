@@ -7,16 +7,16 @@
 
 import Foundation
 
-protocol Resolver {
-    func resolve<T>(for type: T.Type) -> T?
+protocol DependencyResolvable {
+    func resolve<T>(for type: T.Type) -> T
 }
 
-protocol AppDependencyContainer {
-    func register<T>(_ instance: T)
-    func register<T>(for type: T.Type, _ handler: @escaping (Resolver) -> T)
-    
-    func resolve<T>(for type: T.Type) -> T?
+protocol DependencyRegistrable {
+    func register<T>(for key: T.Type, instance: T)
+    func register<T>(for type: T.Type, _ handler: @escaping (DependencyResolvable) -> T)
 }
+
+typealias AppDependencyContainer = DependencyResolvable & DependencyRegistrable
 
 final class DefaultDependencyContainer {
     // MARK: Properties
@@ -25,20 +25,25 @@ final class DefaultDependencyContainer {
 
 // MARK: AppDependencyContainer Confirmation
 extension DefaultDependencyContainer: AppDependencyContainer {
-    func register<T>(_ instance: T) {
-        let key = String(describing: instance.self)
+    func register<T>(for key: T.Type, instance: T) {
+        let key = String(describing: key)
         dependencies[key] = instance
     }
     
-    func register<T>(for type: T.Type, _ handler: @escaping (Resolver) -> T) {
+    func register<T>(for type: T.Type, _ handler: @escaping (DependencyResolvable) -> T) {
         let key =  String(describing: type)
         dependencies[key] = handler
     }
     
-    func resolve<T>(for type: T.Type) -> T? {
+    func resolve<T>(for type: T.Type) -> T {
         let key = String(describing: type)
         
-        guard let value = dependencies[key] as? T else { return nil }
-        return value
+        if let resolver = dependencies[key] as? (DependencyResolvable) -> T {
+            return resolver(self)
+        } else if let value = dependencies[key] as? T {
+            return value
+        } else {
+            fatalError("의존성 객체 없음: \(type)")
+        }
     }
 }
