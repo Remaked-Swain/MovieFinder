@@ -24,8 +24,8 @@ struct MovieFinderApp: App {
         container.register(for: DefaultFetchMovieDetailUseCase.self) { resolver in
             DefaultFetchMovieDetailUseCase(repository: resolver.resolve(for: DefaultDailyBoxOfficeListRepository.self))
         }
-        container.register(for: MainViewModel.self) { resolver in
-            MainViewModel(fetchDailyBoxOfficeListUseCase: resolver.resolve(for: DefaultFetchDailyBoxOfficeListUseCase.self), fetchMovieDetailUseCase: resolver.resolve(for: DefaultFetchMovieDetailUseCase.self))
+        container.register(for: DefaultMovieListViewModel.self) { resolver in
+            DefaultMovieListViewModel(fetchDailyBoxOfficeListUseCase: resolver.resolve(for: DefaultFetchDailyBoxOfficeListUseCase.self), fetchMovieDetailUseCase: resolver.resolve(for: DefaultFetchMovieDetailUseCase.self))
         }
         return container
     }()
@@ -33,7 +33,7 @@ struct MovieFinderApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationStack {
-                DailyBoxOfficeListView(vm: container.resolve(for: MainViewModel.self))
+                DailyBoxOfficeListView(vm: container.resolve(for: DefaultMovieListViewModel.self))
             }
         }
     }

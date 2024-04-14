@@ -7,7 +7,16 @@
 
 import Combine
 
-final class MainViewModel: ObservableObject {
+protocol MovieListViewModel: ObservableObject {
+    var movies: [BasicMovieInfo]? { get }
+    var selectedMovieInfo: DetailMovieInfo? { get }
+    
+    func updateDailyBoxOfficeList()
+    func updateDetailMovieInfo(movieCode code: String)
+    func flushMovieInfo()
+}
+
+final class DefaultMovieListViewModel {
     // MARK: Dependencies
     private let fetchDailyBoxOfficeListUseCase: FetchDailyBoxOfficeListUseCase
     private let fetchMovieDetailUseCase: FetchMovieDetailUseCase
@@ -31,7 +40,10 @@ final class MainViewModel: ObservableObject {
         case .failure(let error): print(error)
         }
     }
-    
+}
+
+// MARK: MovieListViewModel Confirmation
+extension DefaultMovieListViewModel: MovieListViewModel {
     func updateDailyBoxOfficeList() {
         fetchDailyBoxOfficeListUseCase.fetchDailyBoxOfficeList()
             .sink { [weak self] completion in
