@@ -302,12 +302,12 @@ Presentation 계층은 사용자에게 보여지는 UI 부분을 관장하는 �
 
 **DailyBoxOfficeListView**
 ```swift
-struct DailyBoxOfficeListView: View {
-    @ObservedObject private var vm: MainViewModel
+struct DailyBoxOfficeListView<ViewModel: MovieListViewModel>: View {
+    @ObservedObject private var vm: ViewModel
     
     private let navigationTitle: String = "일일 박스오피스 순위"
     
-    init(vm: MainViewModel) {
+    init(vm: ViewModel) {
         self.vm = vm
     }
     
@@ -357,15 +357,33 @@ extension DailyBoxOfficeListView {
 >
 > 하나의 뷰에 하나의 뷰모델이 매칭되는 구조로 설계할 수도 있었겠지만 SwiftUI에서는 `DetailMovieInfoView`와 같은 컴포넌트 단위의 뷰를 하나 만들어놓고 재사용하는 것이 아주 편리합니다.
 >
-> 따라서 `MainViewModel`의 통제를 받는 하위 뷰로 만들었습니다.
+> 따라서 `MovieListViewModel`의 통제를 받는 하위 뷰로 만들었습니다.
 >
-> 만약 이 컴포넌트 뷰도 다양한 기능이 생기고 무거워질 수 있다면 그때는 해당 뷰 전용의 뷰모델을 추가로 만드는 것도 고려해볼만 합니다. 
+> 만약 이 컴포넌트 뷰도 다양한 기능이 생기고 무거워질 수 있다면 그때는 해당 뷰 전용의 뷰모델을 추가로 만드는 것도 고려해볼만 합니다.
+>
+> 같은 Presentation 계층이어도 마찬가지로 뷰는 뷰모델에 의존합니다.
+> 뷰모델을 추상화하여 인터페이스만 제공하는 것으로 의존성을 낮출 수 있습니다.
+>
+> 뷰에서 쓸 뷰모델은 프로토콜로 추상화되어 정확한 타입을 알 수 없는 불명확 타입(Opaque)이 됩니다.
+> 이는 제네릭과 제약설정을 통해 컴파일러가 타입을 알아볼 수 있게 만드는 것으로 해결할 수 있습니다.  
 
 ---
 
-**MainViewModel**
+**MovieListViewModel**
 ```swift
-final class MainViewModel: ObservableObject {
+protocol MovieListViewModel: ObservableObject {
+    var movies: [BasicMovieInfo]? { get }
+    var selectedMovieInfo: DetailMovieInfo? { get }
+    
+    func updateDailyBoxOfficeList()
+    func updateDetailMovieInfo(movieCode code: String)
+    func flushMovieInfo()
+}
+```
+> `MovieListViewModel`은 영화정보를 표시할 수 있다는 책임을 갖습니다. 
+
+```swift
+final class DefaultMovieListViewModel {
     // MARK: Dependencies
     private let fetchDailyBoxOfficeListUseCase: FetchDailyBoxOfficeListUseCase
     private let fetchMovieDetailUseCase: FetchMovieDetailUseCase
@@ -383,8 +401,16 @@ final class MainViewModel: ObservableObject {
         self.fetchMovieDetailUseCase = fetchMovieDetailUseCase
     }
     
-    // 생략...
-    
+    private func handleCompletion(_ completion: Subscribers.Completion<Error>) {
+        switch completion {
+        case .finished: break
+        case .failure(let error): print(error)
+        }
+    }
+}
+
+// MARK: MovieListViewModel Confirmation
+extension DefaultMovieListViewModel: MovieListViewModel {
     func updateDailyBoxOfficeList() {
         fetchDailyBoxOfficeListUseCase.fetchDailyBoxOfficeList()
             .sink { [weak self] completion in
@@ -404,11 +430,18 @@ final class MainViewModel: ObservableObject {
             }
             .store(in: &cancellables)
     }
+    
+    func flushMovieInfo() {
+        selectedMovieInfo = nil
+        cancellables.forEach { cancellable in
+            cancellable.cancel()
+        }
+    }
 }
 ```
-> `MainViewModel`은 유즈케이스를 가지고 뷰를 표시하는데 필요한 데이터를 준비할 책임이 있습니다.
+> `MovieListViewModel`의 능력을 실제로 구현하는 구현체는 필요한 의존성 객체를 주입받아 지니게 됩니다.
 >
-> 물론 유즈케이스도 외부에서 주입받아 지니게 됩니다.
+> 의존성 객체에 맞춰서 프로토콜을 준수하면 됩니다.
 
 ---
 
@@ -429,7 +462,7 @@ Application 계층은 서비스 전체의 준비나 통제에 관여한다는 �
 
 ```swift
 DailyBoxOfficeListView(
-    vm: MainViewModel(
+    vm: MovieListViewModel(
         fetchDailyBoxOfficeListUseCase: DefaultFetchDailyBoxOfficeListUseCase(
             repository: DefaultDailyBoxOfficeListRepository(
                 networkService: DefaultNetworkService(
@@ -455,7 +488,7 @@ DailyBoxOfficeListView(
 
 ```swift
 #Preview {
-    DailyBoxOfficeListView(vm: PreviewProvider.shared.mainViewModel)
+    DailyBoxOfficeListView(vm: PreviewProvider.shared.movieListViewModel)
 }
 
 final class PreviewProvider {
@@ -468,7 +501,7 @@ final class PreviewProvider {
     lazy var dailyBoxOfficeListRepository = DefaultDailyBoxOfficeListRepository(networkService: networkService)
     lazy var fetchDailyBoxOfficeListUseCase = DefaultFetchDailyBoxOfficeListUseCase(repository: dailyBoxOfficeListRepository)
     lazy var fetchMovieDetailUseCase = DefaultFetchMovieDetailUseCase(repository: dailyBoxOfficeListRepository)
-    lazy var mainViewModel = MainViewModel(fetchDailyBoxOfficeListUseCase: fetchDailyBoxOfficeListUseCase, fetchMovieDetailUseCase: fetchMovieDetailUseCase)
+    lazy var movieListViewModel = MainViewModel(fetchDailyBoxOfficeListUseCase: fetchDailyBoxOfficeListUseCase, fetchMovieDetailUseCase: fetchMovieDetailUseCase)
 }
 ```
 > 때문에 위와 같은 편법적인 코드를 작성하는 행위도 저질렀습니다. 
@@ -545,7 +578,7 @@ struct MovieFinderApp: App {
             DefaultFetchMovieDetailUseCase(repository: resolver.resolve(for: DefaultDailyBoxOfficeListRepository.self))
         }
         container.register(for: MainViewModel.self) { resolver in
-            MainViewModel(fetchDailyBoxOfficeListUseCase: resolver.resolve(for: DefaultFetchDailyBoxOfficeListUseCase.self), fetchMovieDetailUseCase: resolver.resolve(for: DefaultFetchMovieDetailUseCase.self))
+            DefaultMovieListViewModel(fetchDailyBoxOfficeListUseCase: resolver.resolve(for: DefaultFetchDailyBoxOfficeListUseCase.self), fetchMovieDetailUseCase: resolver.resolve(for: DefaultFetchMovieDetailUseCase.self))
         }
         return container
     }()
@@ -553,7 +586,7 @@ struct MovieFinderApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationStack {
-                DailyBoxOfficeListView(vm: container.resolve(for: MainViewModel.self))
+                DailyBoxOfficeListView(vm: container.resolve(for: DefaultMovieListViewModel.self))
             }
         }
     }
