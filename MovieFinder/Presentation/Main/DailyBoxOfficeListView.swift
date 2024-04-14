@@ -7,12 +7,12 @@
 
 import SwiftUI
 
-struct DailyBoxOfficeListView: View {
-    @ObservedObject private var vm: MainViewModel
+struct DailyBoxOfficeListView<ViewModel: MovieListViewModel>: View {
+    @ObservedObject private var vm: ViewModel
     
     private let navigationTitle: String = "일일 박스오피스 순위"
     
-    init(vm: MainViewModel) {
+    init(vm: ViewModel) {
         self.vm = vm
     }
     

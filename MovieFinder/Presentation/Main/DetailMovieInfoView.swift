@@ -8,11 +8,11 @@
 import SwiftUI
 import Combine
 
-struct DetailMovieInfoView: View {
-    @ObservedObject private var vm: MainViewModel
+struct DetailMovieInfoView<ViewModel: MovieListViewModel>: View {
+    @ObservedObject private var vm: ViewModel
     private let code: String
     
-    init(vm: MainViewModel, code: String) {
+    init(vm: ViewModel, code: String) {
         self.vm = vm
         self.code = code
     }
