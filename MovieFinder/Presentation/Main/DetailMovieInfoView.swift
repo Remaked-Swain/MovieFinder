@@ -45,6 +45,7 @@ struct DetailMovieInfoView<ViewModel: MovieListViewModel>: View {
             }
         }
         .frame(maxWidth: .infinity)
+        .padding()
         .onAppear {
             vm.updateDetailMovieInfo(movieCode: code)
         }

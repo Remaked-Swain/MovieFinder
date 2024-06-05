@@ -20,6 +20,8 @@ struct DailyBoxOfficeListView<ViewModel: MovieListViewModel>: View {
         List(vm.movies ?? [], id: \.movieCode) { movie in
             movieCell(movie)
         }
+        .listStyle(.plain)
+        .padding()
         .navigationTitle(navigationTitle)
         .onAppear {
             vm.updateDailyBoxOfficeList()
