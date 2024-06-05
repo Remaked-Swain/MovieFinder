@@ -10,7 +10,7 @@ SwiftUI 환경에서 Clean Architecture와 MVVM을 실습한 프로젝트
 
 <p>
     <img src="https://github.com/Remaked-Swain/ScreenShotRepository/blob/main/MovieFinder/DailyBoxOfficeList.png?raw=true" alt="DailyBoxOfficeListView" width="250px">
-    <img src="https://github.com/Remaked-Swain/ScreenShotRepository/blob/main/MovieFinder/DetailMovieInfo.png?raw=true" alt="DetailMovieInfoView" width="250px">
+    <img src="https://github.com/Remaked-Swain/ScreenShotRepository/blob/main/MovieFinder/DefailMovieInfo.png?raw=true" alt="DetailMovieInfoView" width="250px">
 </p>
 
 **일일 박스오피스 영화 목록 뷰**: DailyBoxOfficeListView
